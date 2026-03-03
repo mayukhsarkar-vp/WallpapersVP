@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Velvet Pages — Premium Wallpapers</title>
+<meta name="description" content="Velvet Pages — Ultra-premium 4K & 8K wallpapers for every device. Curated by Mayukh Sarkar. Luxury. Style. Elegance.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A96E;
+    --gold-light: #E8D5A3;
+    --gold-dark: #8B6914;
+    --black: #0A0A0A;
+    --charcoal: #111111;
+    --dark: #1A1A1A;
+    --mid: #2A2A2A;
+    --warm-white: #F5F0E8;
+    --cream: #FAF6EE;
+    --text-muted: #999;
+    --text-dim: #666;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--warm-white);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+  /* Custom Cursor */
+  .cursor {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none;
+    z-index: 99999;
+    transition: transform 0.1s;
+    mix-blend-mode: difference;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none;
+    z-index: 99998;
+    transition: transform 0.3s ease, width 0.3s, height 0.3s, opacity 0.3s;
+    opacity: 0.6;
+  }
+  /* ── Noise overlay ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.35;
+  }
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar { width: 3px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--gold-dark); }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 1000;
+    padding: 24px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    backdrop-filter: blur(20px);
+    background: rgba(10,10,10,0.7);
+    border-bottom: 1px solid rgba(201,169,110,0.1);
+    transition: padding 0.3s;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-decoration: none;
+  }
+  .nav-logo span { font-style: italic; }
+  .nav-links { display: flex; gap: 40px; list-style: none; }
+  .nav-links a {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--warm-white);
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.3s, color 0.3s;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--gold); }
+  .nav-cart {
+    display: flex; align-items: center; gap: 16px;
+  }
+  .cart-btn {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 10px 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: none;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .cart-btn::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: var(--gold);
+    transform: translateX(-100%);
+    transition: transform 0.3s;
+    z-index: -1;
+  }
+  .cart-btn:hover { color: var(--black); }
+  .cart-btn:hover::before { transform: translateX(0); }
+  .cart-count {
+    background: var(--gold);
+    color: var(--black);
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    font-size: 0.65rem;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 600;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    height: 100vh; min-height: 700px;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: 
+      radial-gradient(ellipse at 20% 50%, rgba(201,169,110,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(201,169,110,0.06) 0%, transparent 50%),
+      linear-gradient(135deg, #0A0A0A 0%, #1A1410 50%, #0A0A0A 100%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image: 
+      linear-gradient(rgba(201,169,110,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,169,110,0.05) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center;
+    padding: 0 20px;
+    max-width: 900px;
+  }
+  .hero-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 1s 0.3s forwards;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 300;
+    line-height: 1.05;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 1s 0.5s forwards;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+    display: block;
+  }
+  .hero-sub {
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    line-height: 2;
+    color: var(--text-muted);
+    max-width: 520px;
+    margin: 0 auto 48px;
+    opacity: 0;
+    animation: fadeUp 1s 0.7s forwards;
+  }
+  .hero-ctas {
+    display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 1s 0.9s forwards;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--black);
+    padding: 16px 44px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    border: none;
+    cursor: none;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    font-weight: 500;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 20px 40px rgba(201,169,110,0.3); }
+  .btn-outline {
+    background: transparent;
+    color: var(--warm-white);
+    padding: 16px 44px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.3);
+    cursor: none;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-scroll {
+    position: absolute; bottom: 40px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    opacity: 0;
+    animation: fadeUp 1s 1.2s forwards;
+  }
+  .scroll-line {
+    width: 1px; height: 60px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+  .scroll-text {
+    font-size: 0.55rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* ── COUNTDOWN BANNER ── */
+  .countdown-banner {
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-dark));
+    padding: 14px;
+    text-align: center;
+    position: relative;
+    z-index: 999;
+    margin-top: 80px;
+  }
+  .countdown-inner {
+    display: flex; align-items: center; justify-content: center; gap: 20px;
+    flex-wrap: wrap;
+  }
+  .countdown-text {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--black);
+    font-weight: 600;
+  }
+  .countdown-timer {
+    display: flex; gap: 12px; align-items: center;
+  }
+  .timer-block {
+    background: var(--black);
+    color: var(--gold);
+    padding: 6px 12px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    min-width: 50px;
+    text-align: center;
+  }
+  .timer-sep { color: var(--black); font-weight: 700; font-size: 1.2rem; }
+  .discount-badge {
+    background: var(--black);
+    color: var(--gold);
+    padding: 6px 16px;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  /* ── SECTION COMMONS ── */
+  section { padding: 120px 60px; }
+  .section-eyebrow {
+    font-size: 0.6rem;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 24px;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+  .gold-divider {
+    width: 60px; height: 1px;
+    background: var(--gold);
+    margin-bottom: 40px;
+  }
+
+  /* ── FREE SAMPLES ── */
+  #free-samples {
+    background: var(--charcoal);
+    position: relative;
+    overflow: hidden;
+  }
+  #free-samples::before {
+    content: 'FREE';
+    position: absolute; right: -40px; top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12rem;
+    color: rgba(201,169,110,0.03);
+    letter-spacing: 0.5em;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  .samples-header { max-width: 600px; margin-bottom: 60px; }
+  .samples-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2px;
+  }
+  .sample-card {
+    position: relative;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    cursor: none;
+    background: var(--dark);
+  }
+  .sample-card-inner {
+    position: absolute; inset: 0;
+    background: var(--mid);
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .sample-card:hover .sample-card-inner { transform: scale(1.05); }
+  .sample-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 60%);
+    z-index: 2;
+  }
+  .sample-info {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 24px;
+    z-index: 3;
+    transform: translateY(10px);
+    transition: transform 0.4s;
+  }
+  .sample-card:hover .sample-info { transform: translateY(0); }
+  .sample-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 4px;
+  }
+  .sample-meta {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .download-btn {
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    padding: 10px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: none;
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.4s 0.1s, transform 0.4s 0.1s;
+    display: flex; align-items: center; gap: 8px;
+    width: fit-content;
+  }
+  .sample-card:hover .download-btn { opacity: 1; transform: translateY(0); }
+  .free-badge {
+    position: absolute; top: 16px; right: 16px;
+    background: var(--gold);
+    color: var(--black);
+    padding: 4px 12px;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 700;
+    z-index: 4;
+  }
+  /* Wallpaper gradient previews */
+  .wp-1 { background: linear-gradient(135deg, #0D1B2A 0%, #1B2A3A 40%, #2D4A6A 100%); }
+  .wp-2 { background: linear-gradient(135deg, #1A0A0A 0%, #3A1A1A 40%, #2A0D0D 100%); }
+  .wp-3 { background: linear-gradient(135deg, #0A0A1A 0%, #1A1A3A 40%, #0D0D2A 100%); }
+  .wp-4 { background: linear-gradient(135deg, #0A1A10 0%, #1A3A20 40%, #0D2A15 100%); }
+  .wp-5 { background: linear-gradient(135deg, #1A1510 0%, #3A2A15 40%, #2A1D0A 100%); }
+  .wp-6 { background: radial-gradient(ellipse at center, #2A1A3A 0%, #0D0A1A 100%); }
+
+  /* Decorative elements for wallpaper previews */
+  .sample-card-inner::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: 
+      radial-gradient(circle at 30% 30%, rgba(255,255,255,0.06) 0%, transparent 40%),
+      radial-gradient(circle at 70% 70%, rgba(255,255,255,0.04) 0%, transparent 40%);
+  }
+  .wp-1::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Ccircle cx='200' cy='150' r='120' fill='none' stroke='rgba(255,255,255,0.05)' stroke-width='1'/%3E%3Ccircle cx='200' cy='150' r='80' fill='none' stroke='rgba(255,255,255,0.05)' stroke-width='1'/%3E%3C/svg%3E") center/cover; }
+
+  /* ── QUOTE BLOCK ── */
+  .quote-block {
+    padding: 80px 60px;
+    background: var(--dark);
+    border-left: 3px solid var(--gold);
+    margin: 0 60px;
+    position: relative;
+  }
+  .quote-block::before {
+    content: '"';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14rem;
+    color: rgba(201,169,110,0.08);
+    position: absolute;
+    top: -40px; left: 40px;
+    line-height: 1;
+  }
+  .quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.6;
+    max-width: 800px;
+    position: relative;
+  }
+  .quote-attr {
+    margin-top: 24px;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ── COLLECTIONS ── */
+  #collections { background: var(--black); }
+  .filter-bar {
+    display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px;
+  }
+  .filter-btn {
+    background: transparent;
+    border: 1px solid rgba(201,169,110,0.3);
+    color: var(--text-muted);
+    padding: 8px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: none;
+    transition: all 0.3s;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--black);
+  }
+  .sort-bar {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 48px;
+  }
+  .sort-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); }
+  .sort-select {
+    background: var(--dark);
+    border: 1px solid rgba(201,169,110,0.2);
+    color: var(--warm-white);
+    padding: 8px 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    cursor: none;
+    outline: none;
+  }
+  .collections-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+  }
+  .product-card {
+    background: var(--charcoal);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s, box-shadow 0.4s;
+    border: 1px solid rgba(201,169,110,0.08);
+  }
+  .product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,169,110,0.2);
+  }
+  .product-img {
+    aspect-ratio: 4/3;
+    position: relative;
+    overflow: hidden;
+  }
+  .product-preview {
+    position: absolute; inset: 0;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .product-card:hover .product-preview { transform: scale(1.08); }
+  .product-badge {
+    position: absolute; top: 16px; left: 16px;
+    padding: 4px 12px;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    z-index: 3;
+  }
+  .badge-basic { background: #3A3A3A; color: var(--warm-white); }
+  .badge-premium { background: var(--gold-dark); color: var(--warm-white); }
+  .badge-ultra { background: linear-gradient(90deg, var(--gold-dark), var(--gold)); color: var(--black); }
+  .product-body { padding: 24px; }
+  .product-category {
+    font-size: 0.55rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+  .product-desc {
+    font-size: 0.7rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+  .product-features {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px;
+  }
+  .feature-tag {
+    background: var(--dark);
+    padding: 4px 10px;
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .product-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 20px;
+  }
+  .product-price {
+    display: flex; flex-direction: column;
+  }
+  .price-original {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    text-decoration: line-through;
+  }
+  .price-current {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .price-unit { font-size: 0.6rem; color: var(--text-muted); }
+  .add-cart-btn {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 10px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: none;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .add-cart-btn::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+    z-index: -1;
+  }
+  .add-cart-btn:hover { color: var(--black); }
+  .add-cart-btn:hover::before { transform: scaleX(1); }
+
+  /* ── WHY CHOOSE ── */
+  #why { background: var(--charcoal); }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+  }
+  .why-card {
+    border-top: 1px solid rgba(201,169,110,0.3);
+    padding-top: 32px;
+    transition: border-color 0.3s;
+  }
+  .why-card:hover { border-color: var(--gold); }
+  .why-icon {
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+    filter: drop-shadow(0 0 8px rgba(201,169,110,0.4));
+  }
+  .why-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+  }
+  .why-text { font-size: 0.75rem; line-height: 2; color: var(--text-muted); }
+
+  /* ── STORY / ABOUT ── */
+  #about {
+    background: var(--black);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .about-visual {
+    position: relative;
+    aspect-ratio: 4/5;
+  }
+  .about-img-main {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #1A1510 0%, #2A1D0A 50%, #3A2810 100%);
+  }
+  .about-img-main::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: 
+      radial-gradient(circle at 30% 40%, rgba(201,169,110,0.15) 0%, transparent 50%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='500' viewBox='0 0 400 500'%3E%3Cpath d='M 50 50 Q 200 0 350 50 Q 400 250 350 450 Q 200 500 50 450 Q 0 250 50 50 Z' fill='none' stroke='rgba(201,169,110,0.1)' stroke-width='1'/%3E%3Cpath d='M 100 100 Q 200 50 300 100 Q 350 250 300 400 Q 200 450 100 400 Q 50 250 100 100 Z' fill='none' stroke='rgba(201,169,110,0.08)' stroke-width='1'/%3E%3C/svg%3E") center/cover;
+  }
+  .about-frame {
+    position: absolute;
+    top: -20px; left: -20px; right: 20px; bottom: 20px;
+    border: 1px solid rgba(201,169,110,0.2);
+    z-index: -1;
+  }
+  .about-accent {
+    position: absolute; bottom: 40px; right: -30px;
+    background: var(--gold);
+    padding: 24px;
+    max-width: 200px;
+  }
+  .about-accent-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--black);
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .founder-name {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-top: 8px;
+    font-weight: 600;
+  }
+  .about-text { font-size: 0.8rem; line-height: 2.2; color: var(--text-muted); margin-bottom: 24px; }
+
+  /* ── HOW TO ORDER ── */
+  #how-to-order { background: var(--dark); }
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 2px;
+    margin-top: 60px;
+  }
+  .step {
+    background: var(--charcoal);
+    padding: 48px 32px;
+    position: relative;
+    transition: background 0.3s;
+  }
+  .step:hover { background: var(--mid); }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem;
+    color: rgba(201,169,110,0.1);
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+    color: var(--gold);
+  }
+  .step-text { font-size: 0.72rem; line-height: 2; color: var(--text-muted); }
+  .upi-highlight {
+    display: inline-block;
+    background: rgba(201,169,110,0.1);
+    border: 1px solid rgba(201,169,110,0.3);
+    color: var(--gold);
+    padding: 4px 10px;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    margin-top: 8px;
+  }
+
+  /* ── REVIEWS ── */
+  #reviews { background: var(--black); overflow: hidden; }
+  .reviews-track {
+    display: flex; gap: 24px;
+    animation: reviewScroll 30s linear infinite;
+    width: max-content;
+  }
+  .reviews-track:hover { animation-play-state: paused; }
+  .review-card {
+    background: var(--charcoal);
+    border: 1px solid rgba(201,169,110,0.1);
+    padding: 36px;
+    min-width: 320px;
+    max-width: 320px;
+    position: relative;
+  }
+  .review-card::before {
+    content: '★★★★★';
+    font-size: 0.8rem;
+    color: var(--gold);
+    letter-spacing: 4px;
+    display: block;
+    margin-bottom: 20px;
+  }
+  .review-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 1.8;
+    margin-bottom: 24px;
+    color: var(--warm-white);
+  }
+  .review-author {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .review-city { color: var(--text-muted); font-size: 0.6rem; margin-top: 4px; }
+
+  /* ── AUTHENTICITY ── */
+  .auth-section {
+    background: linear-gradient(135deg, var(--gold-dark), #5A3E00);
+    padding: 80px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .auth-section::before {
+    content: '©';
+    position: absolute;
+    font-size: 30rem;
+    opacity: 0.05;
+    font-family: 'Cormorant Garamond', serif;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .auth-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    color: var(--black);
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .auth-text { color: rgba(0,0,0,0.7); font-size: 0.8rem; line-height: 2; max-width: 600px; margin: 0 auto; position: relative; }
+
+  /* ── ORDER MODAL ── */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.95);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal {
+    background: var(--charcoal);
+    border: 1px solid rgba(201,169,110,0.3);
+    max-width: 540px;
+    width: 100%;
+    padding: 60px;
+    position: relative;
+    animation: modalIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .modal-close {
+    position: absolute; top: 24px; right: 24px;
+    background: none; border: none;
+    color: var(--text-muted);
+    font-size: 1.5rem;
+    cursor: none;
+    transition: color 0.3s;
+  }
+  .modal-close:hover { color: var(--gold); }
+  .modal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    margin-bottom: 8px;
+  }
+  .modal-subtitle { font-size: 0.7rem; color: var(--text-muted); margin-bottom: 32px; letter-spacing: 0.1em; }
+  .form-group { margin-bottom: 20px; }
+  .form-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 8px; }
+  .form-input {
+    width: 100%;
+    background: var(--dark);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--warm-white);
+    padding: 14px 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  .form-input:focus { border-color: var(--gold); }
+  .form-select { cursor: none; }
+  .payment-info {
+    background: var(--dark);
+    border: 1px solid rgba(201,169,110,0.2);
+    padding: 24px;
+    margin: 24px 0;
+  }
+  .payment-upi {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .payment-note { font-size: 0.7rem; color: var(--text-muted); line-height: 1.8; }
+  .submit-btn {
+    width: 100%;
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    padding: 18px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: none;
+    transition: all 0.3s;
+    margin-top: 8px;
+  }
+  .submit-btn:hover { background: var(--gold-light); }
+
+  /* ── CART SIDEBAR ── */
+  .cart-sidebar {
+    position: fixed; right: 0; top: 0; bottom: 0;
+    width: 420px;
+    background: var(--charcoal);
+    border-left: 1px solid rgba(201,169,110,0.2);
+    z-index: 10001;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    padding: 60px 40px;
+    overflow-y: auto;
+  }
+  .cart-sidebar.open { transform: translateX(0); }
+  .cart-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 40px;
+  }
+  .cart-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+  }
+  .cart-close { background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: none; }
+  .cart-item {
+    display: flex; gap: 16px; margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .cart-item-thumb {
+    width: 70px; height: 55px;
+    flex-shrink: 0;
+  }
+  .cart-item-info { flex: 1; }
+  .cart-item-name { font-size: 0.85rem; margin-bottom: 4px; }
+  .cart-item-price { color: var(--gold); font-size: 0.9rem; }
+  .cart-item-remove { background: none; border: none; color: var(--text-dim); cursor: none; font-size: 0.8rem; transition: color 0.3s; }
+  .cart-item-remove:hover { color: #ff4444; }
+  .cart-total {
+    border-top: 1px solid rgba(201,169,110,0.3);
+    padding-top: 24px;
+    margin-top: 16px;
+  }
+  .cart-total-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.8rem; }
+  .cart-grand { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--gold); }
+  .cart-empty { text-align: center; color: var(--text-muted); font-size: 0.8rem; padding: 60px 0; }
+  .cart-empty-icon { font-size: 3rem; margin-bottom: 16px; opacity: 0.3; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--charcoal);
+    padding: 80px 60px 40px;
+    border-top: 1px solid rgba(201,169,110,0.1);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 60px;
+  }
+  .footer-brand .nav-logo { display: block; margin-bottom: 20px; }
+  .footer-tagline { font-size: 0.75rem; line-height: 2; color: var(--text-muted); margin-bottom: 24px; }
+  .footer-email a { color: var(--gold); font-size: 0.75rem; text-decoration: none; }
+  .footer-heading {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 12px; }
+  .footer-links a { color: var(--text-muted); font-size: 0.75rem; text-decoration: none; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-copy { font-size: 0.65rem; color: var(--text-dim); letter-spacing: 0.1em; }
+  .footer-legal { font-size: 0.6rem; color: var(--text-dim); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(0.8); transform-origin: top; }
+    50% { opacity: 1; transform: scaleY(1); transform-origin: top; }
+  }
+  @keyframes reviewScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .fade-in-section {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .fade-in-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── NOTIFICATIONS ── */
+  .toast {
+    position: fixed; bottom: 40px; left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--gold);
+    color: var(--black);
+    padding: 16px 32px;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+    z-index: 20000;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    section { padding: 80px 24px; }
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    #about { grid-template-columns: 1fr; }
+    .about-visual { display: none; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .quote-block { margin: 0 24px; padding: 60px 32px; }
+    .cart-sidebar { width: 100%; }
+    .modal { padding: 40px 24px; }
+  }
+  @media (max-width: 600px) {
+    .hero-title { font-size: 3rem; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: 1fr; }
+  }
+  /* Download modal */
+  .download-form { display: flex; flex-direction: column; gap: 16px; }
+  .success-state { text-align: center; padding: 40px 0; }
+  .success-icon { font-size: 3rem; margin-bottom: 16px; }
+  .success-title { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--gold); margin-bottom: 12px; }
+  .success-text { font-size: 0.75rem; color: var(--text-muted); line-height: 2; }
+  .watermark-text {
+    font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(201,169,110,0.5);
+    text-align: center; margin-top: 16px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Toast notification -->
+<div class="toast" id="toast"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo"><span>Velvet</span> Pages</a>
+  <ul class="nav-links">
+    <li><a href="#free-samples">Free Samples</a></li>
+    <li><a href="#collections">Collections</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#how-to-order">Order</a></li>
+  </ul>
+  <div class="nav-cart">
+    <button class="cart-btn" onclick="toggleCart()">
+      Cart <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- COUNTDOWN BANNER -->
+<div class="countdown-banner">
+  <div class="countdown-inner">
+    <span class="discount-badge">🔥 Limited Offer</span>
+    <span class="countdown-text">50% OFF — Ends In:</span>
+    <div class="countdown-timer">
+      <div class="timer-block" id="timerH">00</div>
+      <span class="timer-sep">:</span>
+      <div class="timer-block" id="timerM">59</div>
+      <span class="timer-sep">:</span>
+      <div class="timer-block" id="timerS">59</div>
+    </div>
+    <span class="countdown-text">Order within this window!</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">By Mayukh Sarkar · Est. 2024</p>
+    <h1 class="hero-title">
+      Where Walls<br>
+      <em>Tell Stories</em>
+    </h1>
+    <p class="hero-sub">Ultra-premium 4K & 8K wallpapers — crafted for those who refuse to settle for ordinary. Every pixel, a statement. Every screen, a gallery.</p>
+    <div class="hero-ctas">
+      <a href="#collections" class="btn-primary">Explore Collections</a>
+      <a href="#free-samples" class="btn-outline">Free Samples</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span class="scroll-text">Scroll</span>
+  </div>
+</section>
+
+<!-- FREE SAMPLES -->
+<section id="free-samples">
+  <div class="samples-header fade-in-section">
+    <p class="section-eyebrow">Complimentary Collection</p>
+    <h2 class="section-title">Try Before You<br><em>Fall in Love</em></h2>
+    <div class="gold-divider"></div>
+    <p style="font-size:0.8rem; color:var(--text-muted); line-height:2; max-width:500px;">We believe in the power of our work. These are our finest pieces — offered free, because we know once you see them, you'll want more. No email required, instant download.</p>
+  </div>
+  <div class="samples-grid">
+    <div class="sample-card" onclick="downloadFree('Midnight Ocean Depths')">
+      <div class="sample-card-inner wp-1"></div>
+      <div class="sample-overlay"></div>
+      <span class="free-badge">Free</span>
+      <div class="sample-info">
+        <div class="sample-name">Midnight Ocean Depths</div>
+        <div class="sample-meta">4K · Desktop · Minimalist</div>
+        <button class="download-btn">↓ Instant Download</button>
+      </div>
+    </div>
+    <div class="sample-card" onclick="downloadFree('Ember & Ash')">
+      <div class="sample-card-inner wp-2"></div>
+      <div class="sample-overlay"></div>
+      <span class="free-badge">Free</span>
+      <div class="sample-info">
+        <div class="sample-name">Ember & Ash</div>
+        <div class="sample-meta">8K · All Devices · Dark</div>
+        <button class="download-btn">↓ Instant Download</button>
+      </div>
+    </div>
+    <div class="sample-card" onclick="downloadFree('Cosmic Velvet')">
+      <div class="sample-card-inner wp-3"></div>
+      <div class="sample-overlay"></div>
+      <span class="free-badge">Free</span>
+      <div class="sample-info">
+        <div class="sample-name">Cosmic Velvet</div>
+        <div class="sample-meta">4K · Mobile · Atmospheric</div>
+        <button class="download-btn">↓ Instant Download</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE 1 -->
+<div class="quote-block fade-in-section">
+  <p class="quote-text">"I didn't create wallpapers. I created moods. Atmospheres. The feeling you get when you unlock your phone and your screen takes your breath away — that's what Velvet Pages is about."</p>
+  <p class="quote-attr">— Mayukh Sarkar, Founder, Velvet Pages</p>
+</div>
+
+<!-- COLLECTIONS -->
+<section id="collections">
+  <div class="fade-in-section" style="max-width:600px; margin-bottom:60px;">
+    <p class="section-eyebrow">Premium Collections</p>
+    <h2 class="section-title">Curated for<br><em>Every Screen</em></h2>
+    <div class="gold-divider"></div>
+  </div>
+
+  <!-- Filters -->
+  <div class="filter-bar fade-in-section">
+    <button class="filter-btn active" onclick="filterProducts('all', this)">All</button>
+    <button class="filter-btn" onclick="filterProducts('mobile', this)">Mobile</button>
+    <button class="filter-btn" onclick="filterProducts('desktop', this)">Desktop</button>
+    <button class="filter-btn" onclick="filterProducts('tablet', this)">Tablet</button>
+    <button class="filter-btn" onclick="filterProducts('minimalist', this)">Minimalist</button>
+    <button class="filter-btn" onclick="filterProducts('detailed', this)">Detailed</button>
+    <button class="filter-btn" onclick="filterProducts('nature', this)">Nature</button>
+    <button class="filter-btn" onclick="filterProducts('abstract', this)">Abstract</button>
+  </div>
+  <div class="sort-bar fade-in-section">
+    <span class="sort-label">Sort by:</span>
+    <select class="sort-select" onchange="sortProducts(this.value)">
+      <option value="popular">Most Popular</option>
+      <option value="price-low">Price: Low to High</option>
+      <option value="price-high">Price: High to Low</option>
+      <option value="newest">Newest First</option>
+    </select>
+  </div>
+
+  <div class="collections-grid" id="productsGrid">
+    <!-- Products rendered by JS -->
+  </div>
+</section>
+
+<!-- WHY CHOOSE -->
+<section id="why">
+  <div class="fade-in-section">
+    <p class="section-eyebrow">Our Promise</p>
+    <h2 class="section-title">Why Velvet Pages<br><em>Stands Apart</em></h2>
+    <div class="gold-divider"></div>
+  </div>
+  <div class="why-grid">
+    <div class="why-card fade-in-section">
+      <div class="why-icon">🎨</div>
+      <div class="why-title">Artisanal Curation</div>
+      <p class="why-text">Every wallpaper is hand-selected and quality-tested across multiple device profiles. We reject 90% of submissions to maintain absolute excellence.</p>
+    </div>
+    <div class="why-card fade-in-section">
+      <div class="why-icon">🔬</div>
+      <div class="why-title">True 4K & 8K</div>
+      <p class="why-text">Not upscaled, not compressed. Pure native resolution files that look razor-sharp on every panel — from OLED to IPS, from 60Hz to 144Hz.</p>
+    </div>
+    <div class="why-card fade-in-section">
+      <div class="why-icon">📱</div>
+      <div class="why-title">Multi-Device Optimized</div>
+      <p class="why-text">Each pack contains device-specific variants: phone ratios, desktop ultrawide, and tablet — perfectly cropped, never distorted.</p>
+    </div>
+    <div class="why-card fade-in-section">
+      <div class="why-icon">⚡</div>
+      <div class="why-title">Instant Delivery</div>
+      <p class="why-text">Within minutes of payment verification, your bundle arrives. No waiting, no delays. We value your time as much as your screen real estate.</p>
+    </div>
+    <div class="why-card fade-in-section">
+      <div class="why-icon">🇮🇳</div>
+      <div class="why-title">Made in India, Loved by India</div>
+      <p class="why-text">Created by an Indian founder who understands Indian aesthetics — from Kolkata's cultural richness to the minimalist urban sensibility of Mumbai.</p>
+    </div>
+    <div class="why-card fade-in-section">
+      <div class="why-icon">🔒</div>
+      <div class="why-title">Original & Licensed</div>
+      <p class="why-text">Every piece is exclusively licensed to Velvet Pages. No copies, no knockoffs. When you buy from us, you buy authenticity guaranteed.</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE 2 -->
+<div class="quote-block fade-in-section" style="margin-top:0;">
+  <p class="quote-text">"Your screen is the first thing you see every morning and the last thing before sleep. Shouldn't it be beautiful enough to deserve that honour?"</p>
+  <p class="quote-attr">— Velvet Pages Philosophy</p>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-visual fade-in-section">
+    <div class="about-img-main"></div>
+    <div class="about-frame"></div>
+    <div class="about-accent">
+      <p class="about-accent-text">"Luxury is in the details that no one sees but everyone feels."</p>
+      <p class="founder-name">— Mayukh Sarkar</p>
+    </div>
+  </div>
+  <div class="about-content fade-in-section">
+    <p class="section-eyebrow">Our Story</p>
+    <h2 class="section-title">Born from<br><em>Obsession</em></h2>
+    <div class="gold-divider"></div>
+    <p class="about-text">Mayukh Sarkar, a design enthusiast from India, grew tired of settling for mediocre wallpapers — pixelated freebies and generic stock imagery that did nothing for the soul. He spent months searching for wallpapers worthy of modern displays, and found... nothing that matched his vision.</p>
+    <p class="about-text">So he built it himself. What started as a personal collection became Velvet Pages — a curated universe of wallpapers that treat your screen like a canvas. Every pack is a mood, a journey, a statement. From whisper-quiet minimalism to intricate, breathtaking detail, Velvet Pages exists at the intersection of art and technology.</p>
+    <p class="about-text">Today, Velvet Pages serves customers from Mumbai to Guwahati, Chennai to Chandigarh — people who believe their digital spaces deserve the same care as their physical ones.</p>
+    <a href="#collections" class="btn-primary" style="text-decoration:none; display:inline-block; margin-top:16px;">Explore the Collection</a>
+  </div>
+</section>
+
+<!-- HOW TO ORDER -->
+<section id="how-to-order">
+  <div class="fade-in-section">
+    <p class="section-eyebrow">Simple Process</p>
+    <h2 class="section-title">Order in<br><em>4 Easy Steps</em></h2>
+    <div class="gold-divider"></div>
+  </div>
+  <div class="steps-grid">
+    <div class="step fade-in-section">
+      <div class="step-num">01</div>
+      <div class="step-title">Choose Your Pack</div>
+      <p class="step-text">Browse our collections, select the bundle that speaks to your aesthetic. Add to cart and proceed to order.</p>
+    </div>
+    <div class="step fade-in-section">
+      <div class="step-num">02</div>
+      <div class="step-title">Make Payment</div>
+      <p class="step-text">Pay via UPI to the official Velvet Pages ID:<br>
+        <span class="upi-highlight">7029043459@upi</span>
+        <br><br>Any UPI app works — PhonePe, GPay, Paytm.</p>
+    </div>
+    <div class="step fade-in-section">
+      <div class="step-num">03</div>
+      <div class="step-title">Send Screenshot</div>
+      <p class="step-text">WhatsApp your payment screenshot to:<br>
+        <span class="upi-highlight">+91 7029043459</span>
+        <br><br>Include your email in the message for fastest delivery.</p>
+    </div>
+    <div class="step fade-in-section">
+      <div class="step-num">04</div>
+      <div class="step-title">Receive & Enjoy</div>
+      <p class="step-text">Your bundle is verified and dispatched within minutes. Check your email. Your walls will never be the same.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" style="padding-bottom:0;">
+  <div class="fade-in-section" style="margin-bottom:60px;">
+    <p class="section-eyebrow">Voices of India</p>
+    <h2 class="section-title">Loved Across<br><em>Every City</em></h2>
+    <div class="gold-divider"></div>
+  </div>
+  <div style="overflow:hidden;">
+    <div class="reviews-track" id="reviewsTrack">
+      <!-- Filled by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- AUTHENTICITY NOTICE -->
+<div class="auth-section fade-in-section">
+  <h2 class="auth-title">🔐 The Original. The Only.</h2>
+  <p class="auth-text">Velvet Pages wallpapers are exclusively licensed and owned by Mayukh Sarkar. All designs, curation, and branding are protected under © Velvet Pages 2024. Do not copy, redistribute, or resell. Beware of imitations — only wallpapers purchased directly from VelvetPages.in carry our quality guarantee and authentic licensing. If in doubt, verify with us directly on WhatsApp.</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo"><span>Velvet</span> Pages</a>
+      <p class="footer-tagline">Ultra-premium 4K & 8K wallpapers for every screen. Curated by Mayukh Sarkar. Born in India. Built for the world.</p>
+      <p style="font-size:0.65rem; color:var(--text-dim);">📧 <a href="mailto:mayukhsarkar1319@gmail.com" class="footer-email" style="color:var(--gold);">mayukhsarkar1319@gmail.com</a></p>
+      <p style="font-size:0.65rem; color:var(--text-dim); margin-top:8px;">📱 WhatsApp: +91 7029043459</p>
+    </div>
+    <div>
+      <h4 class="footer-heading">Collections</h4>
+      <ul class="footer-links">
+        <li><a href="#collections">Minimalist Packs</a></li>
+        <li><a href="#collections">Nature & Landscapes</a></li>
+        <li><a href="#collections">Abstract Art</a></li>
+        <li><a href="#collections">Dark Themes</a></li>
+        <li><a href="#collections">Ultra Premium</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="footer-heading">Company</h4>
+      <ul class="footer-links">
+        <li><a href="#about">About Founder</a></li>
+        <li><a href="#why">Why Choose Us</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#how-to-order">How to Order</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="footer-heading">Support</h4>
+      <ul class="footer-links">
+        <li><a href="mailto:mayukhsarkar1319@gmail.com">Email Support</a></li>
+        <li><a href="https://wa.me/917029043459" target="_blank">WhatsApp</a></li>
+        <li><a href="#free-samples">Free Downloads</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2024 Velvet Pages. All rights reserved. Founded by Mayukh Sarkar.</p>
+    <p class="footer-legal">All wallpapers are exclusively licensed to Velvet Pages. Unauthorized reproduction is prohibited.</p>
+  </div>
+</footer>
+
+<!-- ORDER MODAL -->
+<div class="modal-overlay" id="orderModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('orderModal')">✕</button>
+    <div id="orderModalContent">
+      <div class="modal-title" id="orderModalTitle">Complete Your Order</div>
+      <p class="modal-subtitle" id="orderModalSub">Fill in your details to proceed</p>
+      <div class="form-group">
+        <label class="form-label">Your Name</label>
+        <input type="text" class="form-input" id="orderName" placeholder="e.g. Rahul Sharma">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-input" id="orderEmail" placeholder="your@email.com — bundle sent here">
+      </div>
+      <div class="form-group">
+        <label class="form-label">WhatsApp Number</label>
+        <input type="tel" class="form-input" id="orderPhone" placeholder="+91 XXXXXXXXXX">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Device Type</label>
+        <select class="form-input form-select" id="orderDevice">
+          <option value="">Select your device</option>
+          <option>Mobile (Android / iOS)</option>
+          <option>Desktop / Laptop</option>
+          <option>Tablet / iPad</option>
+          <option>All Devices</option>
+        </select>
+      </div>
+      <div class="payment-info">
+        <p style="font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;">Payment Details</p>
+        <p class="payment-upi">UPI ID: 7029043459@upi</p>
+        <p class="payment-note">1. Pay the amount shown above to our UPI ID<br>
+        2. Take a screenshot of the payment confirmation<br>
+        3. WhatsApp it to: <strong style="color:var(--gold);">+91 7029043459</strong><br>
+        4. Your bundle will be emailed within minutes ⚡</p>
+      </div>
+      <button class="submit-btn" onclick="placeOrder()">✓ I've Made the Payment — Notify Us</button>
+      <p class="watermark-text">© Velvet Pages — Original wallpapers only. Protected by copyright.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FREE DOWNLOAD MODAL -->
+<div class="modal-overlay" id="downloadModal">
+  <div class="modal" style="max-width:440px;">
+    <button class="modal-close" onclick="closeModal('downloadModal')">✕</button>
+    <div id="downloadModalContent">
+      <div class="modal-title">Claim Your<br><em style="color:var(--gold); font-style:italic;">Free Wallpaper</em></div>
+      <p class="modal-subtitle">Enter your email to get your free download link instantly</p>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-input" id="downloadEmail" placeholder="your@email.com">
+      </div>
+      <p id="downloadPackName" style="font-size:0.7rem; color:var(--gold); margin-bottom:20px;"></p>
+      <button class="submit-btn" onclick="confirmDownload()">⬇ Download Now — It's Free!</button>
+    </div>
+  </div>
+</div>
+
+<!-- CART SIDEBAR -->
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h2 class="cart-title">Your Cart</h2>
+    <button class="cart-close" onclick="toggleCart()">✕</button>
+  </div>
+  <div id="cartItems"></div>
+  <div id="cartTotalSection"></div>
+</div>
+
+<script>
+// ── CURSOR ──
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX; mouseY = e.clientY;
+  cursor.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px)`;
+});
+function animateRing() {
+  ringX += (mouseX - ringX - 18) * 0.12;
+  ringY += (mouseY - ringY - 18) * 0.12;
+  ring.style.transform = `translate(${ringX}px, ${ringY}px)`;
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+// ── COUNTDOWN ──
+let endTime = Date.now() + 60 * 60 * 1000;
+function updateTimer() {
+  const left = Math.max(0, endTime - Date.now());
+  const h = Math.floor(left / 3600000);
+  const m = Math.floor((left % 3600000) / 60000);
+  const s = Math.floor((left % 60000) / 1000);
+  document.getElementById('timerH').textContent = String(h).padStart(2,'0');
+  document.getElementById('timerM').textContent = String(m).padStart(2,'0');
+  document.getElementById('timerS').textContent = String(s).padStart(2,'0');
+  if(left <= 0) {
+    document.querySelector('.countdown-banner').innerHTML = '<div class="countdown-inner"><span class="countdown-text" style="color:var(--black);">⏰ Offer Expired — New discount coming soon!</span></div>';
+  }
+}
+setInterval(updateTimer, 1000);
+updateTimer();
+
+// ── PRODUCTS ──
+const products = [
+  { id:1, name:'Azure Serenity', category:['minimalist','desktop'], tags:['Desktop','4K','Dark'], tier:'basic', price:20, origPrice:40, desc:'Breathtaking minimal ocean gradients. Pure calm for your desktop.', gradient:'wp-1' },
+  { id:2, name:'Crimson Dusk', category:['abstract','mobile'], tags:['Mobile','4K','Warm'], tier:'basic', price:20, origPrice:40, desc:'Deep reds and twilight hues for an AMOLED screen that glows.', gradient:'wp-2' },
+  { id:3, name:'Nebula Silk', category:['abstract','desktop'], tags:['Desktop','8K','Cosmic'], tier:'premium', price:40, origPrice:80, desc:'Swirling cosmic dust rendered at 8K — pure interstellar luxury.', gradient:'wp-3' },
+  { id:4, name:'Forest Whisper', category:['nature','tablet'], tags:['All Devices','4K','Nature'], tier:'premium', price:40, origPrice:80, desc:'Lush emerald forest depths with divine light rays. Breathtaking.', gradient:'wp-4' },
+  { id:5, name:'Golden Hour', category:['nature','mobile'], tags:['Mobile','4K','Warm'], tier:'basic', price:20, origPrice:40, desc:'The perfect sunset gradient that makes every unlock magical.', gradient:'wp-5' },
+  { id:6, name:'The Velvet Cosmos', category:['abstract','desktop'], tags:['All Devices','8K','Ultra'], tier:'ultra', price:100, origPrice:200, desc:'Our magnum opus. 30 wallpapers of pure cosmic luxury. 8K native. Collector\'s edition.', gradient:'wp-6' },
+  { id:7, name:'Midnight Botanic', category:['nature','detailed'], tags:['Desktop','8K','Detailed'], tier:'ultra', price:100, origPrice:200, desc:'Hyper-detailed botanical art at 8K — every leaf, every vein, divine.', gradient:'wp-1' },
+  { id:8, name:'Monochrome Tokyo', category:['minimalist','desktop','mobile'], tags:['All Devices','4K','Urban'], tier:'premium', price:40, origPrice:80, desc:'Architectural minimalism. The city stripped to its most elegant essence.', gradient:'wp-2' },
+];
+
+let cart = [];
+let activeFilter = 'all';
+
+function getBadgeClass(tier) {
+  return tier === 'basic' ? 'badge-basic' : tier === 'premium' ? 'badge-premium' : 'badge-ultra';
+}
+function getBadgeLabel(tier) {
+  return tier === 'basic' ? 'Essential' : tier === 'premium' ? 'Premium' : 'Ultra Luxury';
+}
+
+function renderProducts(list) {
+  const grid = document.getElementById('productsGrid');
+  grid.innerHTML = list.map(p => `
+    <div class="product-card" data-id="${p.id}">
+      <div class="product-img">
+        <div class="product-preview ${p.gradient}"></div>
+        <span class="product-badge ${getBadgeClass(p.tier)}">${getBadgeLabel(p.tier)}</span>
+      </div>
+      <div class="product-body">
+        <div class="product-category">${p.tags.join(' · ')}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-desc">${p.desc}</div>
+        <div class="product-features">
+          ${p.tags.map(t => `<span class="feature-tag">${t}</span>`).join('')}
+        </div>
+        <div class="product-footer">
+          <div class="product-price">
+            <span class="price-original">₹${p.origPrice}</span>
+            <span class="price-current">₹${p.price}</span>
+            <span class="price-unit">50% OFF — Limited Time</span>
+          </div>
+          <div style="display:flex;gap:8px;flex-direction:column;align-items:flex-end;">
+            <button class="add-cart-btn" onclick="addToCart(${p.id})">+ Add to Cart</button>
+            <button class="add-cart-btn" onclick="openOrder(${p.id})" style="background:rgba(201,169,110,0.1);border-color:rgba(201,169,110,0.5);">Order Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterProducts(filter, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeFilter = filter;
+  const filtered = filter === 'all' ? products : products.filter(p => p.category.includes(filter));
+  renderProducts(filtered);
+}
+
+function sortProducts(value) {
+  const filtered = activeFilter === 'all' ? [...products] : products.filter(p => p.category.includes(activeFilter));
+  if(value === 'price-low') filtered.sort((a,b) => a.price - b.price);
+  else if(value === 'price-high') filtered.sort((a,b) => b.price - a.price);
+  renderProducts(filtered);
+}
+
+renderProducts(products);
+
+// ── CART ──
+function addToCart(id) {
+  const p = products.find(x => x.id === id);
+  if(!p) return;
+  const exists = cart.find(x => x.id === id);
+  if(exists) {
+    showToast('Already in cart!');
+  } else {
+    cart.push(p);
+    updateCartUI();
+    showToast(`"${p.name}" added to cart ✓`);
+  }
+}
+
+function updateCartUI() {
+  document.getElementById('cartCount').textContent = cart.length;
+  const itemsEl = document.getElementById('cartItems');
+  const totalEl = document.getElementById('cartTotalSection');
+
+  if(cart.length === 0) {
+    itemsEl.innerHTML = `<div class="cart-empty"><div class="cart-empty-icon">🛒</div><p>Your cart is empty.<br>Browse our collections.</p></div>`;
+    totalEl.innerHTML = '';
+    return;
+  }
+
+  itemsEl.innerHTML = cart.map(p => `
+    <div class="cart-item">
+      <div class="cart-item-thumb ${p.gradient}"></div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${p.name}</div>
+        <div class="cart-item-price">₹${p.price}</div>
+      </div>
+      <button class="cart-item-remove" onclick="removeFromCart(${p.id})">✕</button>
+    </div>
+  `).join('');
+
+  const total = cart.reduce((s,p) => s+p.price, 0);
+  const orig = cart.reduce((s,p) => s+p.origPrice, 0);
+  totalEl.innerHTML = `
+    <div class="cart-total">
+      <div class="cart-total-row"><span>Original Total</span><span style="text-decoration:line-through;color:var(--text-dim)">₹${orig}</span></div>
+      <div class="cart-total-row"><span>You Save</span><span style="color:#4CAF50">₹${orig-total}</span></div>
+      <div class="cart-total-row" style="border-top:1px solid rgba(255,255,255,0.1);padding-top:16px;margin-top:8px;"><span>Total</span><span class="cart-grand">₹${total}</span></div>
+    </div>
+    <button class="submit-btn" style="margin-top:24px;width:100%;" onclick="openCartOrder()">Proceed to Order</button>
+  `;
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(x => x.id !== id);
+  updateCartUI();
+  showToast('Removed from cart');
+}
+
+function toggleCart() {
+  document.getElementById('cartSidebar').classList.toggle('open');
+  updateCartUI();
+}
+
+// ── MODALS ──
+function openOrder(id) {
+  const p = products.find(x => x.id === id);
+  document.getElementById('orderModalTitle').textContent = `Order: ${p.name}`;
+  document.getElementById('orderModalSub').textContent = `₹${p.origPrice} → ₹${p.price} · 50% off`;
+  document.getElementById('orderModal').classList.add('active');
+}
+
+function openCartOrder() {
+  const total = cart.reduce((s,p) => s+p.price, 0);
+  document.getElementById('orderModalTitle').textContent = 'Complete Your Order';
+  document.getElementById('orderModalSub').textContent = `Cart Total: ₹${total} · 50% off applied`;
+  toggleCart();
+  document.getElementById('orderModal').classList.add('active');
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove('active');
+}
+
+function placeOrder() {
+  const name = document.getElementById('orderName').value.trim();
+  const email = document.getElementById('orderEmail').value.trim();
+  const phone = document.getElementById('orderPhone').value.trim();
+  if(!name || !email || !phone) {
+    showToast('Please fill all required fields!');
+    return;
+  }
+  const subject = encodeURIComponent('New Velvet Pages Order');
+  const body = encodeURIComponent(`New Order!\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nCart: ${cart.map(p=>p.name).join(', ') || 'Single item'}\n\nPlease verify payment and send bundle.`);
+  window.open(`mailto:mayukhsarkar1319@gmail.com?subject=${subject}&body=${body}`, '_blank');
+  document.getElementById('orderModalContent').innerHTML = `
+    <div class="success-state">
+      <div class="success-icon">✓</div>
+      <div class="success-title">Order Noted!</div>
+      <p class="success-text">Thank you, ${name}!<br><br>Now WhatsApp your payment screenshot to <strong style="color:var(--gold)">+91 7029043459</strong> and your bundle will be sent to <strong style="color:var(--gold)">${email}</strong> within minutes.<br><br>UPI ID: <strong style="color:var(--gold)">7029043459@upi</strong></p>
+    </div>
+  `;
+}
+
+let currentFreePack = '';
+function downloadFree(packName) {
+  currentFreePack = packName;
+  document.getElementById('downloadPackName').textContent = `Pack: ${packName}`;
+  document.getElementById('downloadModal').classList.add('active');
+}
+
+function confirmDownload() {
+  const email = document.getElementById('downloadEmail').value.trim();
+  if(!email) { showToast('Please enter your email!'); return; }
+  document.getElementById('downloadModalContent').innerHTML = `
+    <div class="success-state">
+      <div class="success-icon">🎉</div>
+      <div class="success-title">Enjoy!</div>
+      <p class="success-text">Your free wallpaper "<strong style="color:var(--gold)">${currentFreePack}</strong>" is being sent to <strong style="color:var(--gold)">${email}</strong>.<br><br>Check your inbox in the next few minutes. Welcome to Velvet Pages!</p>
+    </div>
+  `;
+  // Trigger mailto for notification
+  const subject = encodeURIComponent('Free Wallpaper Download — Velvet Pages');
+  const body = encodeURIComponent(`Free download request:\nEmail: ${email}\nPack: ${currentFreePack}`);
+  setTimeout(() => window.open(`mailto:mayukhsarkar1319@gmail.com?subject=${subject}&body=${body}`, '_blank'), 500);
+}
+
+// ── REVIEWS ──
+const reviews = [
+  { text:'The quality blew my mind. My iPhone screen looks like a painting. Never going back to free wallpapers again.', author:'Arjun Mehta', city:'Mumbai, Maharashtra' },
+  { text:'Ordered the Ultra pack and my PC setup got 3 compliments in one day from colleagues. Worth every rupee.', author:'Priya Nair', city:'Bengaluru, Karnataka' },
+  { text:'Super fast delivery! Paid, sent screenshot on WhatsApp, got the bundle in 10 minutes. Mayukh is incredibly professional.', author:'Rohit Das', city:'Kolkata, West Bengal' },
+  { text:'The minimalist packs are breathtaking. My AMOLED screen has never looked this good. Exceptional taste.', author:'Sneha Joshi', city:'Pune, Maharashtra' },
+  { text:'Downloaded the free sample first and was impressed. Bought the premium pack immediately. No disappointment.', author:'Vikram Rajan', city:'Chennai, Tamil Nadu' },
+  { text:'Buying wallpapers felt strange at first, but these are genuinely art-quality pieces. Absolutely worth it.', author:'Anika Sharma', city:'Delhi, NCR' },
+  { text:'The 8K resolution is unreal on my 4K monitor. Crisp, detailed, stunning. Velvet Pages is premium indeed.', author:'Karan Singh', city:'Jaipur, Rajasthan' },
+  { text:'Gifted the Ultra pack to my tech-loving husband. He was speechless. Best gift idea for screen lovers!', author:'Meera Pillai', city:'Kochi, Kerala' },
+];
+
+// Duplicate for infinite scroll
+const track = document.getElementById('reviewsTrack');
+const allReviews = [...reviews, ...reviews];
+track.innerHTML = allReviews.map(r => `
+  <div class="review-card">
+    <p class="review-text">"${r.text}"</p>
+    <div class="review-author">${r.author}</div>
+    <div class="review-city">${r.city}</div>
+  </div>
+`).join('');
+
+// ── SCROLL ANIMATIONS ──
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in-section').forEach(el => obs.observe(el));
+
+// ── TOAST ──
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// Close modals on overlay click
+document.querySelectorAll('.modal-overlay').forEach(o => {
+  o.addEventListener('click', e => { if(e.target === o) o.classList.remove('active'); });
+});
+</script>
+</body>
+</html>
